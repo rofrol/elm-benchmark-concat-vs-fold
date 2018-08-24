@@ -28,4 +28,9 @@ suite =
             (\_ -> List.concat sampleArray)
             "foldl"
             (\_ -> List.foldl (\i acc -> i ++ acc) [] sampleArray)
+        , Benchmark.compare "concat vs foldr"
+            "concat"
+            (\_ -> List.concat sampleArray)
+            "foldr"
+            (\_ -> List.foldr (\i acc -> i ++ acc) [] sampleArray)
         ]
