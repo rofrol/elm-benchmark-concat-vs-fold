@@ -16,11 +16,13 @@ suite =
         letters =
             List.range (Char.toCode 'a') (Char.toCode 'z')
                 |> List.map (\i -> Char.fromCode i |> String.fromChar)
-                |> Debug.log "letters"
 
         sampleArray =
             List.range 1 100
                 |> List.map (\i -> List.map (\l -> ( i, l )) letters)
+
+        concatPlusPlus =
+            List.foldr (++) []
     in
     describe "concat vs foldl"
         [ Benchmark.compare "concat vs foldl"
@@ -33,4 +35,9 @@ suite =
             (\_ -> List.concat sampleArray)
             "foldr"
             (\_ -> List.foldr (\i acc -> i ++ acc) [] sampleArray)
+        , Benchmark.compare "concat vs concatPlusPlus"
+            "concat"
+            (\_ -> List.concat sampleArray)
+            "concatPlusPlus"
+            (\_ -> concatPlusPlus sampleArray)
         ]
