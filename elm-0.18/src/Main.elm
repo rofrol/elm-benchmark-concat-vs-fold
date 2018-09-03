@@ -24,7 +24,7 @@ suite =
         concatPlusPlus =
             List.foldr (++) []
     in
-    describe "concat vs foldl"
+    describe "concat vs fold"
         [ Benchmark.compare "concat vs foldl"
             "concat"
             (\_ -> List.concat sampleArray)
